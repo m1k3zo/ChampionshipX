@@ -1,5 +1,10 @@
 from tkinter import * 
 from PIL import ImageTk, Image
+import numpy as np
+import time
+from threading import Thread 
+from TLMode import*
+
 
 def start():
     button.state(['pressed', 'disabled'])
@@ -96,14 +101,34 @@ img_label_TLgreen.pack()
 selobj.pack()
 selobj.place(anchor = E, relx = 1, rely = 0.2)
 """
+selobj = Frame(window, width = 35, height = 35)
 
-
+img_TLgreen = ImageTk.PhotoImage(Image.open("Resources/TLgreen.png"))
+img_label_TLgreen = Button(selobj, image = img_TLgreen)
+img_label_TLgreen.pack()
+img_label_TLgreen.place(anchor = NE, relx = 1, rely = 1)
+selobj.place(anchor = NE, relx = 1, rely = 1)
 ##### coordinates
 
-coords =Button(window, command = dump, text = "Test")
-coords.place(relx = 0.85, rely = 0.5)
-#cellCoordinate()
 
-coords.place(relx = 0.85, rely = 0.5)
+Edit = Button(window, text = "Edit", command = dump)
+Edit.place(relx = 0.85, rely = 0.3)
+
+TimeMode = Button(window, text = "Time mode", command = lambda: Thread(target=TLTimeMode).start())
+TimeMode.place(relx = 0.85, rely = 0.4)
+
+#TLTimeMode(isClicked)
+
+TransportMode = Button(window, text = "Transport mode", command = lambda: Thread(target=TLTransportMode).start())
+TransportMode.place(relx = 0.85, rely = 0.5)
+
+TraficLightsMode = Label(window, text="Current mode:")
+TraficLightsMode.place(relx = 0.85, rely = 0.6)
+
+TestSample = Button(window, text = "Test sample")
+TestSample.place(relx = 0.85, rely = 0.7)
+
+TestRandom = Button(window, text = "Test random")
+TestRandom.place(relx = 0.85, rely = 0.8)
 
 window.mainloop()

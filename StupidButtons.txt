@@ -42,15 +42,26 @@ window.title("World Skills X")
 window.geometry("1200x700")
 
 ##### road from blocks
+
+road = Frame(window, width = 700, height = 700)
+
 img_road = ImageTk.PhotoImage(Image.open("Resources/road.png"))
-for r in range (20):
-    for c in range (20):
-        road = Frame(window)
-        road.grid(row = r, column = c, ipadx=35, ipady = 35, padx = 0, pady = 0)
-        road.place(relx = 0, rely = 0.5)
 road.pack()
 road_png = Label(road, image = img_road)
 road_png.pack()
+
+roadgrid = Frame(window, width = 700, height = 700)
+#pixelVirtual = PhotoImage(width=1, height=1)
+
+clearbtnimg = ImageTk.PhotoImage(Image.open("Resources/clearbtn.png"))
+
+
+roadgrid.place(anchor = W, relx = 0, rely = 0.5)
+
+for x in range(20):
+    for y in range(20):
+        Button(roadgrid, image = clearbtnimg, height = 35, width = 35).grid(row = y, column = x)
+# image=pixelVirtual,  
 
 
 img_block = ImageTk.PhotoImage(Image.open("Resources/block.png"))

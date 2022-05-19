@@ -5,6 +5,9 @@ import time
 from threading import Thread 
 from TLMode import*
 
+import os
+print (os.getcwd())
+
 
 def start():
     button.state(['pressed', 'disabled'])
@@ -45,6 +48,7 @@ def cellCoordinate(x, y):
 window = Tk()
 window.title("World Skills X")
 window.geometry("1200x700")
+
 
 ##### road from blocks
 img_road = ImageTk.PhotoImage(Image.open("Resources/road.png"))
@@ -110,6 +114,7 @@ img_label_TLgreen.place(anchor = NE, relx = 1, rely = 1)
 selobj.place(anchor = NE, relx = 1, rely = 1)
 ##### coordinates
 
+#CurrentMode = "No mode selected"
 
 Edit = Button(window, text = "Edit", command = dump)
 Edit.place(relx = 0.85, rely = 0.3)
@@ -122,8 +127,9 @@ TimeMode.place(relx = 0.85, rely = 0.4)
 TransportMode = Button(window, text = "Transport mode", command = lambda: Thread(target=TLTransportMode).start())
 TransportMode.place(relx = 0.85, rely = 0.5)
 
-TraficLightsMode = Label(window, text="Current mode:")
+TraficLightsMode = Label(window, text=("Current mode: "))
 TraficLightsMode.place(relx = 0.85, rely = 0.6)
+#Mode.set(CurrentMode)
 
 TestSample = Button(window, text = "Test sample")
 TestSample.place(relx = 0.85, rely = 0.7)
@@ -131,4 +137,13 @@ TestSample.place(relx = 0.85, rely = 0.7)
 TestRandom = Button(window, text = "Test random")
 TestRandom.place(relx = 0.85, rely = 0.8)
 
+StartTrain = Button(window, text = "Start training")
+StartTrain.place(relx = 0.85, rely = 0.87)
+
+EndTrain = Button(window, text = "End training")
+EndTrain.place(relx = 0.85, rely = 0.92)
+
+w = Scale(window, from_=0, to=200)
+w.pack()
+w.place (relx = 0.8, rely = 0.8)
 window.mainloop()

@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-SqlQuery_1",
+      "appliesTo": "Database/SqlQuery_1.sql",
+      "type": "launch"
+    }
+  ]
+}

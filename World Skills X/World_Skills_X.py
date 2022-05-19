@@ -5,9 +5,18 @@ import time
 from threading import Thread 
 from TLMode import*
 
-import os
-print (os.getcwd())
+from Timer import Timer
 
+def endTrue():
+    global t
+    send_process = Thread(target=begin)
+    send_process.start()
+    flag = False
+
+t = Timer()
+
+#import os
+#print (os.getcwd())
 
 def start():
     button.state(['pressed', 'disabled'])
@@ -47,6 +56,7 @@ def cellCoordinate(x, y):
 
 window = Tk()
 window.title("World Skills X")
+window.iconbitmap(r'C:/Users/zhitlo/Source/Repos/World Skills X/World Skills X/Resources/icon.ico')
 window.geometry("1200x700")
 
 
@@ -67,44 +77,7 @@ img_Zhorizontal = ImageTk.PhotoImage(Image.open("Resources/Zhorizontal.png"))
 img_Pedestrain = ImageTk.PhotoImage(Image.open("Resources/Pedestrain.png"))
 img_TLgreen = ImageTk.PhotoImage(Image.open("Resources/TLgreen.png"))
 
-##### select object
-"""
-selobj = Frame(window, width = 3, height = 3)
 
-img_block = ImageTk.PhotoImage(Image.open("Resources/block.png"))
-img_label_block = Button(selobj, image = img_block)
-img_label_block.pack()
-
-img_HeavyBlock2 = ImageTk.PhotoImage(Image.open("Resources/HeavyBlock2.png"))
-img_label_HeavyBlock2 = Button(selobj, image = img_HeavyBlock2)
-img_label_HeavyBlock2.pack()
-
-img_Pedestrain = ImageTk.PhotoImage(Image.open("Resources/Pedestrain.png"))
-img_label_Pedestrian = Button(selobj, image = img_Pedestrain)
-img_label_Pedestrian.pack()
-
-img_VagonBlock = ImageTk.PhotoImage(Image.open("Resources/VagonBlock.png"))
-img_label_VagonBlock = Button(selobj, image = img_VagonBlock)
-img_label_VagonBlock.pack()
-
-img_Zhorizontal = ImageTk.PhotoImage(Image.open("Resources/Zhorizontal.png"))
-img_label_Zhorizontal = Button(selobj, image = img_Zhorizontal)
-img_label_Zhorizontal.pack()
-
-img_Zvertical = ImageTk.PhotoImage(Image.open("Resources/Zvertical.png"))
-img_label_Zvertical = Button(selobj, image = img_Zvertical)
-img_label_Zvertical.pack()
-
-img_TLgreen = ImageTk.PhotoImage(Image.open("Resources/TLgreen.png"))
-img_label_TLgreen = Button(selobj, image = img_TLgreen)
-img_label_TLgreen.pack()
-
-
-#selobj.grid(ipadx=35, ipady = 35, padx = 0, pady = 0)
-
-selobj.pack()
-selobj.place(anchor = E, relx = 1, rely = 0.2)
-"""
 selobj = Frame(window, width = 35, height = 35)
 
 img_TLgreen = ImageTk.PhotoImage(Image.open("Resources/TLgreen.png"))
@@ -137,13 +110,26 @@ TestSample.place(relx = 0.85, rely = 0.7)
 TestRandom = Button(window, text = "Test random")
 TestRandom.place(relx = 0.85, rely = 0.8)
 
-StartTrain = Button(window, text = "Start training")
+StartTrain = Button(window, text = "Start training", command =lambda: t.start())
 StartTrain.place(relx = 0.85, rely = 0.87)
 
-EndTrain = Button(window, text = "End training")
+EndTrain = Button(window, text = "End training", command =lambda: t.stop())
 EndTrain.place(relx = 0.85, rely = 0.92)
 
 w = Scale(window, from_=0, to=200)
 w.pack()
 w.place (relx = 0.8, rely = 0.8)
+
+
+
+AIInterface = Frame(window)
+IterNum = Label(AIInterface, text = "Iteration № ")
+IterNum.grid(row = 0, column = 0)
+IterCurrentTimer = Label(AIInterface, text = "Current time: ")
+IterCurrentTimer.grid(row = 1, column = 0)
+IterBestTime = Label(AIInterface, text = "Best time: ")
+IterBestTime.grid(row = 2, column = 0)
+AIInterface.pack()
+AIInterface.place(relx = 0.05, rely = 0.2)
+
 window.mainloop()
